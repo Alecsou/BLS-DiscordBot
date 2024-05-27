@@ -2,7 +2,7 @@ const { ActionRowBuilder,ButtonBuilder,ButtonStyle, EmbedBuilder } = require("di
 
 module.exports = (client, channel) => {
 
-    if (channel.name === "🟢mails-hdv") {
+    if (channel.name === "🟢・mails-hdv") {
         // Send Embed with button
 
         const embed = new EmbedBuilder()
