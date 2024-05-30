@@ -16,6 +16,9 @@ module.exports = async (client) => {
         for (const localCommand of localCommands) {
             const { name, description, options } = localCommand;
 
+            if (localCommand.hide) {
+                continue;
+            }
             if (!localCommand.adminServer) {
                 console.log(`Command ${name} is not set to be usable in this server`)
                 continue;
