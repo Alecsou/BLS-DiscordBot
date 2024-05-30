@@ -1,4 +1,4 @@
-const { testServer } = require("../../../config.json");
+const { playerServer } = require("../../../config.json");
 const getLocalCommands = require("../../utils/getLocalCommands");
 const getApplicationCommands = require("../../utils/getApplicationCommands");
 const areCommandsDifferent = require("../../utils/areCommandsDifferent");
@@ -8,11 +8,18 @@ module.exports = async (client) => {
         const localCommands = getLocalCommands();
         const applicationCommands = await getApplicationCommands(
             client,
-            testServer
+            playerServer
         );
+
+        console.log("\nPLAYER SERVER CONFIGURATION : \n")
 
         for (const localCommand of localCommands) {
             const { name, description, options } = localCommand;
+
+            if (!localCommand.playerServer) {
+                console.log(`Command ${name} is not set to be usable in this server`)
+                continue;
+            }
 
             const existingCommand = await applicationCommands.cache.find(
                 (cmd) => cmd.name === name

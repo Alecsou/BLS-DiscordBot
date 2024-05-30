@@ -31,8 +31,8 @@ const HDVregisterSchema = new mongoose.Schema({
 const HDVRegistery = mongoose.model('HDVRegistery',HDVregisterSchema);
 
 const ChannelAutoReacRegisterySchema = new mongoose.Schema({
-    channelName:String,
-    serverName:Number,
+    channelID:Number,
+    serverID:Number,
     reactions:[String]
 })
 
