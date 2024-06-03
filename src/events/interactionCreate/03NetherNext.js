@@ -1,4 +1,4 @@
-const initMessage = require("../channelCreate/02registerVerifChannel")
+const initMessage = require("../../commands/verif/initVerifChannel.js")
 const { EmbedBuilder } = require("discord.js");
 const { VerifRegistery } = require("../../index.js");
 
@@ -56,6 +56,6 @@ module.exports = async (client, interaction) => {
           }
         }
 
-        client.channels.fetch(interaction.channelId).then(channel => initMessage(client,channel));
+        client.channels.fetch(interaction.channelId).then(channel => initMessage.callback(client,channel));
     }
 }

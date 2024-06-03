@@ -26,13 +26,13 @@ module.exports = async (client, interaction) => {
         })
         if (earliest!=0) {
             twohours = new Date(0).setHours(2);
-            lookupTime = new Date(Number(Date.now()+twohours)-Number(earliest)).getHours()+1;
+            lookupTime = new Date(Number(Date.now()+twohours)-Number(earliest)).getHours()+1+(new Date(Number(Date.now()+twohours)-Number(earliest)).getDate()-1)*24;
         } else {
             lookupTime = 24;
         }
 
         const embed = interaction.message.embeds[0];
-        const newembed = EmbedBuilder.from(embed.toJSON()).setDescription(`Vérification par <@${interaction.user.id}>\n\n*Vérification du monde Nether en cours*\n\n/co l include:ancients_debris action:-block time:${lookupTime}h`);
+        const newembed = EmbedBuilder.from(embed.toJSON()).setDescription(`Vérification par <@${interaction.user.id}>\n\n*Vérification du monde Nether en cours*\n\n\`/co l include:ancients_debris action:-block time:${lookupTime}h\``);
     
         const netherRAS = new ButtonBuilder()
             .setLabel('Finaliser')

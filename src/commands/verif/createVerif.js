@@ -42,14 +42,14 @@ module.exports = {
         })
         if (earliest!=0) {
             twohours = new Date(0).setHours(2);
-            lookupTime = new Date(Number(Date.now()+twohours)-Number(earliest)).getHours()+1;
+            lookupTime = new Date(Number(Date.now()+twohours)-Number(earliest)).getHours()+1+(new Date(Number(Date.now()+twohours)-Number(earliest)).getDate()-1)*24;
         } else {
             lookupTime = 24;
         }
         const embed = new EmbedBuilder()
             .setColor(0x000000)
             .setTitle(`**VERIFICATION EN COURS**`)
-            .setDescription(`Vérification par <@${interaction.user.id}>\n\n*Vérification du monde Minage en cours*\n\n/co l include:deepslate_diamond_ore action:-block time:${lookupTime}h`)
+            .setDescription(`Vérification par <@${interaction.user.id}>\n\n*Vérification du monde Minage en cours*\n\n\`/co l include:deepslate_diamond_ore action:-block time:${lookupTime}h\``)
 
         const minageRAS = new ButtonBuilder()
             .setLabel('Suivant')
