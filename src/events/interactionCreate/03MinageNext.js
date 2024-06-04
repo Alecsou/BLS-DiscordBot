@@ -1,6 +1,7 @@
 const showModal = require("../../commands/verif/showMinageASurveillerModal");
 const { ActionRowBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const { VerifRegistery } = require("../../index.js");
+const getTime = require("../../utils/getTime");
 
 module.exports = async (client, interaction) => {
     if (!interaction.isButton()) return;
@@ -10,23 +11,17 @@ module.exports = async (client, interaction) => {
         const queryResult = await VerifRegistery.find({});
 
         var lookupTime = 24;
-        var earliest = 0;
+        var latest = 0;
         queryResult.forEach(result => {
-            spl = result.closureDate.split(/[:@/]/);
-            date = new Date();
-            date.setDate(spl[0]);
-            date.setMonth(spl[1]);
-            date.setFullYear(spl[2]);
-            date.setHours(Number(spl[3])+2); //fuseau horaire
-            date.setMinutes(spl[4]);
-            date.setSeconds(spl[5]);
-            if (date > earliest) {
-                earliest = date;
+            var date = result.closureDateUnixtime;
+
+            if (date > latest) {
+                latest = date;
             }
         })
-        if (earliest!=0) {
-            twohours = new Date(0).setHours(2);
-            lookupTime = new Date(Number(Date.now()+twohours)-Number(earliest)).getHours()+1+(new Date(Number(Date.now()+twohours)-Number(earliest)).getDate()-1)*24;
+        if (latest!=0) {
+            var currenttime = await getTime();
+            lookupTime = Math.ceil((currenttime.unixtime-latest)/3600);
         } else {
             lookupTime = 24;
         }

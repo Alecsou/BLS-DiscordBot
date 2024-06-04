@@ -7,7 +7,6 @@ module.exports = async (client, interaction) => {
     const comment = interaction.fields.getTextInputValue("commentInput");
 
     const embed = interaction.message.embeds[0];
-    console.log(embed);
     const newembed = EmbedBuilder.from(embed.toJSON()).addFields({name:"Minage",value:`**Ban : ** \`${pseudo}\` (${comment})`});
 
     const minageRAS = new ButtonBuilder()

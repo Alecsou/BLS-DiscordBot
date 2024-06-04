@@ -3,7 +3,6 @@ fs = require("fs");
 const { Client, IntentsBitField } = require("discord.js");
 const mongoose = require("mongoose");
 const eventHandler = require("./handlers/eventHandler");
-const { Int32 } = require("mongodb");
 
 const client = new Client({
     intents: [
@@ -43,7 +42,7 @@ const ChannelAutoReacRegistery = mongoose.model(
 );
 
 const VerifRegisterySchema = new mongoose.Schema({
-    closureDate: String,
+    closureDateUnixtime: String,
     verifier: String,
 });
 
@@ -76,3 +75,11 @@ if (process.argv[2] && process.argv[2] === "-DEV") {
     configGlobal.playerServer = prodConfig.playerServer;
     fs.writeFileSync(configGlobalName, JSON.stringify(configGlobal));
 }
+
+
+// (async () => {
+// await VerifRegistery.deleteOne({});
+// await VerifRegistery.deleteOne({});
+// await VerifRegistery.deleteOne({});
+// const queryResult = await VerifRegistery.find({});
+// console.log(queryResult.length); })()

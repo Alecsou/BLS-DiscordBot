@@ -3,18 +3,16 @@ const {
     EmbedBuilder,
     ButtonBuilder,
     ButtonStyle,
-    underscore,
 } = require("discord.js");
 
 module.exports = {    
     name: "initverif",
     description: "Initialise un channel de vérifs",
+    deleted: false,
     playerServer: false,
     adminServer: true,
     callback: async (client,interaction) => {
         // Send Embed with button
-
-        console.log(interaction);
 
         const embed = new EmbedBuilder()
             .setColor(0xfffa00)
