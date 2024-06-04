@@ -27,7 +27,7 @@ module.exports = async (client, interaction) => {
         }
 
         const embed = interaction.message.embeds[0];
-        const newembed = EmbedBuilder.from(embed.toJSON()).setDescription(`Vérification par <@${interaction.user.id}>\n\n*Vérification du monde Nether en cours*\n\n\`/co l include:ancients_debris action:-block time:${lookupTime}h\``);
+        const newembed = EmbedBuilder.from(embed.toJSON()).setDescription(`Vérification par <@${interaction.user.id}>\n\n*Vérification du monde Nether en cours*\n\n\`/co l include:ancient_debris action:-block time:${lookupTime}h\``);
     
         const netherRAS = new ButtonBuilder()
             .setLabel('Finaliser')
@@ -51,7 +51,9 @@ module.exports = async (client, interaction) => {
     
         await interaction.message.edit({ embeds: [newembed], components:[row] });
         // Delete the modal
-        await interaction.update({
-          });
+        try {
+            await interaction.update({
+            });
+        } catch {}
     }
 }

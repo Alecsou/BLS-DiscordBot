@@ -67,7 +67,10 @@ module.exports = {
             .addComponents(minageBan);
 
         await interaction.message.edit({ embeds: [embed], components:[row] });
-        await interaction.update({});
+        try {
+            await interaction.update({
+            });
+        } catch {}
     },
     name: "createverif",
     description: "Creates a verification",

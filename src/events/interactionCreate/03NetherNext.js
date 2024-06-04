@@ -18,8 +18,10 @@ module.exports = async (client, interaction) => {
     
         await interaction.message.edit({ embeds: [newembed], components:[] });
         // Delete the modal
-        await interaction.update({
+        try {
+          await interaction.update({
           });
+      } catch {}
 
         //REGISTER THE DATE
 
