@@ -3,6 +3,7 @@ fs = require("fs");
 const { Client, IntentsBitField } = require("discord.js");
 const mongoose = require("mongoose");
 const eventHandler = require("./handlers/eventHandler");
+const getTime = require("./utils/getTime");
 
 const client = new Client({
     intents: [
@@ -83,3 +84,7 @@ if (process.argv[2] && process.argv[2] === "-DEV") {
 // await VerifRegistery.deleteOne({});
 // const queryResult = await VerifRegistery.find({});
 // console.log(queryResult.length); })()
+
+
+(async () => {
+await console.log(getTime()) })()
