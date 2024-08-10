@@ -29,7 +29,10 @@ const HDVregisterSchema = new mongoose.Schema({
     pseudo: String,
 });
 
-const HDVRegistery = mongoose.model("HDVRegistery", HDVregisterSchema);
+const HDVRegistery = mongoose.model(
+    "HDVRegistery",
+    HDVregisterSchema
+);
 
 const ChannelAutoReacRegisterySchema = new mongoose.Schema({
     channelID: Number,
@@ -47,12 +50,27 @@ const VerifRegisterySchema = new mongoose.Schema({
     verifier: String,
 });
 
-const VerifRegistery = mongoose.model("VerifRegistery", VerifRegisterySchema);
+const VerifRegistery = mongoose.model(
+    "VerifRegistery",
+    VerifRegisterySchema
+);
+
+const OPRegisterySchema = new mongoose.Schema({
+    entryDateUnixtime: String,
+    entryDatetime: String,
+    staffMember: String,
+});
+
+const OPRegistery = mongoose.model(
+    "OPRegistery",
+    OPRegisterySchema
+);
 
 module.exports = {
     HDVRegistery: HDVRegistery,
     ChannelAutoReacRegistery: ChannelAutoReacRegistery,
     VerifRegistery: VerifRegistery,
+    OPRegistery: OPRegistery,
 };
 
 if (process.argv[2] && process.argv[2] === "-DEV") {
@@ -64,6 +82,7 @@ if (process.argv[2] && process.argv[2] === "-DEV") {
     var devConfig = JSON.parse(fs.readFileSync(devConfigName).toString());
     configGlobal.adminServer = devConfig.adminServer;
     configGlobal.playerServer = devConfig.playerServer;
+    configGlobal.builderServer = devConfig.builderServer;
     fs.writeFileSync(configGlobalName, JSON.stringify(configGlobal));
 } else {
     console.log("PROD ENVIRONNEMENT");
@@ -74,6 +93,7 @@ if (process.argv[2] && process.argv[2] === "-DEV") {
     var prodConfig = JSON.parse(fs.readFileSync(prodConfigName).toString());
     configGlobal.adminServer = prodConfig.adminServer;
     configGlobal.playerServer = prodConfig.playerServer;
+    configGlobal.builderServer = prodConfig.builderServer;
     fs.writeFileSync(configGlobalName, JSON.stringify(configGlobal));
 }
 

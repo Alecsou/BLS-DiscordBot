@@ -1,3 +1,4 @@
 .env
 *.cred
 node_modules
+config.json
